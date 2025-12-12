@@ -1,3 +1,10 @@
+process.on("uncaughtException", (err) => {
+  require("fs").writeFileSync(
+    "crash.log",
+    err.stack || err.toString()
+  );
+});
+
 const { app, BrowserWindow, ipcMain, dialog } = require('electron/main')
 const path = require('node:path')
 const fs = require('fs')
@@ -33,7 +40,7 @@ function createWindow () {
 
   currentWindow = win;
   win.setResizable(true);
-  win.loadFile('index.html')
+  win.loadFile(path.join(__dirname, '..', '..', 'index.html'));
   
   if (process.platform === 'win32') {
     win.once('ready-to-show', () => {
@@ -195,5 +202,12 @@ ipcMain.on('stop-resize', () => {
     resizeState.active = false;
   }
   stopResize();
+});
+//#endregion
+
+//#region IPC Handlers - Pointer Events
+ipcMain.on('set-ignore-mouse-events', (event, ignore) => {
+  if (!currentWindow) return;
+  currentWindow.setIgnoreMouseEvents(!!ignore, { forward: true });
 });
 //#endregion

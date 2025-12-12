@@ -19,6 +19,24 @@ body {
     background: transparent;
 }
 
+body.read-only {
+    pointer-events: none;
+}
+
+body.read-only #toggleReadOnly {
+    pointer-events: auto;
+    opacity: 0.9;
+}
+
+body.readonly {
+    pointer-events: none;
+}
+
+body.readonly #toggleReadOnly {
+    pointer-events: auto;
+    opacity: 0.9;
+}
+
 #topbar {
     -webkit-app-region: drag;
     height: 18px;
@@ -90,8 +108,8 @@ body {
     opacity: 1 !important;
 }
 
-body:hover #settings,
-body.hovering #settings,
+body:not(.read-only):not(.readonly):hover #settings,
+body:not(.read-only):not(.readonly).hovering #settings,
 body:hover #toggleReadOnly,
 body.hovering #toggleReadOnly {
     opacity: 0.9;
@@ -120,8 +138,8 @@ body.hovering #toggleReadOnly {
     transition: box-shadow 0.2s ease;
 }
 
-body:hover #editor,
-body.hovering #editor {
+body:not(.read-only):not(.readonly):hover #editor,
+body:not(.read-only):not(.readonly).hovering #editor {
     border: 2px solid #ffffff !important;
     padding: calc(0.5rem - 2px) calc(1rem - 2px) calc(1rem - 2px) calc(1rem - 2px);
 }
@@ -153,9 +171,17 @@ body.hovering #editor {
     z-index: 50;
 }
 
-body:hover .ql-toolbar,
-body.hovering .ql-toolbar {
+body:not(.read-only):not(.readonly):hover .ql-toolbar,
+body:not(.read-only):not(.readonly).hovering .ql-toolbar {
     opacity: 1;
+}
+
+body.read-only .ql-toolbar,
+body.readonly .ql-toolbar,
+body.read-only #settings,
+body.readonly #settings {
+    opacity: 0 !important;
+    pointer-events: none;
 }
 
 .ql-toolbar .ql-formats {

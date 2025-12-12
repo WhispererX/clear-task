@@ -7,4 +7,5 @@ contextBridge.exposeInMainWorld('electronAPI', {
   getSettings: () => ipcRenderer.invoke('get-settings'),
   startResize: (direction) => ipcRenderer.send('start-resize', direction),
   stopResize: () => ipcRenderer.send('stop-resize'),
+  setIgnoreMouseEvents: (ignore) => ipcRenderer.send('set-ignore-mouse-events', ignore),
 });
