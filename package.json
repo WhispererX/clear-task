@@ -1,0 +1,50 @@
+{
+  "name": "clear-task",
+  "version": "1.0.0",
+  "description": "A transparent, always-on-top note-taking app with customizable appearance and persistent notes.",
+  "main": "src/electron/main.js",
+  "icon": "assets/icon.png",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WhispererX/clear-task"
+  },
+  "keywords": [
+    "electron",
+    "note-taking",
+    "transparent",
+    "always-on-top",
+    "customizable"
+  ],
+  "author": "WhispererX",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^39.2.6",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.whispererx.cleartask",
+    "productName": "Clear Task",
+    "files": [
+      "index.html",
+      "src/**/*",
+      "assets/icon.png"
+    ],
+    "asar": true,
+    "directories": {
+      "buildResources": "assets",
+      "output": "dist"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}

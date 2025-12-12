@@ -1,0 +1,25 @@
+# General
+node_modules
+dist
+package-lock.json
+.vscode
+.env
+*.log
+.idea
+
+# Electron specific
+*.asar
+
+# MacOS specific
+*.DS_Store
+
+# Windows specific
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Builds
+build/
+out/
+dist/
+
